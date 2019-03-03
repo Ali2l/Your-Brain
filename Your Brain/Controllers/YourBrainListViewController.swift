@@ -10,15 +10,28 @@ import UIKit
 
 class YourBrainListViewController: UITableViewController {
     
-    var itemArray = ["Find Ali", "Work on App" , "Shower"]
+    var itemArray = [Item]()
     let defults = UserDefaults.standard
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let items = defults.array(forKey: "TodoListArray") as? [String] {
+        let newItem = Item()
+        newItem.title = "Find Ali"
+        itemArray.append(newItem)
+        
+        let newItem2 = Item()
+        newItem2.title = "Find Khaled"
+        itemArray.append(newItem2)
+        
+        let newItem3 = Item()
+        newItem3.title = "Find Lamya"
+        itemArray.append(newItem3)
+
+        if let items = defults.array(forKey: "TodoListArray") as? [Item] {
             itemArray = items
+            
         }
         
     }
@@ -35,7 +48,18 @@ class YourBrainListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "YourBrainItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        
+        let item = itemArray[indexPath.row]
+        
+        cell.textLabel?.text = item.title
+        
+        
+        
+        if item.done == true {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
     
@@ -44,12 +68,10 @@ class YourBrainListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // print(itemArray[indexPath.row])
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-            
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        
+        tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -63,7 +85,10 @@ class YourBrainListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
             //what will happen when user clicks the add item buttun on UIAlert
-            self.itemArray.append(textField.text!)
+            let newItem = Item()
+            newItem.title = textField.text!
+            
+            self.itemArray.append(newItem)
             self.defults.set(self.itemArray, forKey: "TodoListArray")
             
             self.tableView.reloadData()
