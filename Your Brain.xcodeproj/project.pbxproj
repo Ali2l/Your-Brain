@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4191A56F222B488C00A90E5B /* item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A56E222B488C00A90E5B /* item.swift */; };
+		4191A576222C1A2F00A90E5B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4191A574222C1A2F00A90E5B /* DataModel.xcdatamodeld */; };
 		41A03D662229D17200AE58E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A03D652229D17200AE58E9 /* AppDelegate.swift */; };
 		41A03D682229D17200AE58E9 /* YourBrainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A03D672229D17200AE58E9 /* YourBrainListViewController.swift */; };
 		41A03D6B2229D17200AE58E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41A03D692229D17200AE58E9 /* Main.storyboard */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4191A56E222B488C00A90E5B /* item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = item.swift; sourceTree = "<group>"; };
+		4191A575222C1A2F00A90E5B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		41A03D622229D17200AE58E9 /* Your Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A03D652229D17200AE58E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41A03D672229D17200AE58E9 /* YourBrainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourBrainListViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		4191A570222B489500A90E5B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				4191A56E222B488C00A90E5B /* item.swift */,
+				4191A574222C1A2F00A90E5B /* DataModel.xcdatamodeld */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41A03D682229D17200AE58E9 /* YourBrainListViewController.swift in Sources */,
-				4191A56F222B488C00A90E5B /* item.swift in Sources */,
+				4191A576222C1A2F00A90E5B /* DataModel.xcdatamodeld in Sources */,
 				41A03D662229D17200AE58E9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +372,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4191A574222C1A2F00A90E5B /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4191A575222C1A2F00A90E5B /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 4191A575222C1A2F00A90E5B /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 41A03D5A2229D17200AE58E9 /* Project object */;
 }

@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class YourBrainListViewController: UITableViewController {
     
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         loadItem()
         
@@ -54,7 +56,12 @@ class YourBrainListViewController: UITableViewController {
         
         // print(itemArray[indexPath.row])
         
+        //Deleting
+        //context.delete(itemArray[indexPath.row])
+        //itemArray.remove(at: indexPath.row)
+        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        
         
         saveItems()
         
@@ -70,8 +77,10 @@ class YourBrainListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
             //what will happen when user clicks the add item buttun on UIAlert
-            let newItem = Item()
+            
+            let newItem = Item(context: self.context)
             newItem.title = textField.text!
+            newItem.done = false
             
             self.itemArray.append(newItem)
             
@@ -93,11 +102,8 @@ class YourBrainListViewController: UITableViewController {
     //1
     func saveItems() {
         
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(self.itemArray)
-            try data.write(to: self.dataFilePath!)
+            try context.save()
         } catch {
             print(error)
         }
@@ -110,16 +116,13 @@ class YourBrainListViewController: UITableViewController {
     //2
     func loadItem() {
         
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print(error)
-            }
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
         
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print(error)
         }
-    
     }
 }
 
