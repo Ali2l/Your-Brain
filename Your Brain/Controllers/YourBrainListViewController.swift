@@ -19,6 +19,7 @@ class YourBrainListViewController: UITableViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
+        
         loadItem()
         
     }
@@ -113,16 +114,53 @@ class YourBrainListViewController: UITableViewController {
         
     }
     
+    
+    //Section NO. 18 ..Lecture NO. 243
     //2
-    func loadItem() {
-        
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
+    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest()) {
         
         do {
             itemArray = try context.fetch(request)
         } catch {
             print(error)
         }
+        
+        tableView.reloadData()
     }
+    
+    
 }
+
+//MARK: - Search Bar Methods
+extension YourBrainListViewController : UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItem(with: request)
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text?.count == 0 {
+            loadItem()
+            
+            //dismiss keyboard
+            DispatchQueue.main.async {
+                
+               searchBar.resignFirstResponder()
+            }
+            
+        }
+    }
+    
+    
+    
+}
+
 
