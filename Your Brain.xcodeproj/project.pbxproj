@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4191A576222C1A2F00A90E5B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4191A574222C1A2F00A90E5B /* DataModel.xcdatamodeld */; };
+		4191A5992233248F00A90E5B /* CatagoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A5982233248F00A90E5B /* CatagoryViewController.swift */; };
 		41A03D662229D17200AE58E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A03D652229D17200AE58E9 /* AppDelegate.swift */; };
 		41A03D682229D17200AE58E9 /* YourBrainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A03D672229D17200AE58E9 /* YourBrainListViewController.swift */; };
 		41A03D6B2229D17200AE58E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41A03D692229D17200AE58E9 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		4191A575222C1A2F00A90E5B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		4191A5982233248F00A90E5B /* CatagoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryViewController.swift; sourceTree = "<group>"; };
 		41A03D622229D17200AE58E9 /* Your Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A03D652229D17200AE58E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41A03D672229D17200AE58E9 /* YourBrainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourBrainListViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		4191A571222B48B400A90E5B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4191A5982233248F00A90E5B /* CatagoryViewController.swift */,
 				41A03D672229D17200AE58E9 /* YourBrainListViewController.swift */,
 			);
 			path = Controllers;
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4191A5992233248F00A90E5B /* CatagoryViewController.swift in Sources */,
 				41A03D682229D17200AE58E9 /* YourBrainListViewController.swift in Sources */,
 				4191A576222C1A2F00A90E5B /* DataModel.xcdatamodeld in Sources */,
 				41A03D662229D17200AE58E9 /* AppDelegate.swift in Sources */,

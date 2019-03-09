@@ -12,6 +12,13 @@ import CoreData
 class YourBrainListViewController: UITableViewController {
     
     var itemArray = [Item]()
+    
+    var selectedCategory : Catagory? {
+        didSet {
+            loadItem()
+        }
+    }
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -19,9 +26,8 @@ class YourBrainListViewController: UITableViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        
-        loadItem()
-        
+//        loadItem()
+
     }
     
     
@@ -82,6 +88,7 @@ class YourBrainListViewController: UITableViewController {
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parentCatagory = self.selectedCategory
             
             self.itemArray.append(newItem)
             
@@ -117,7 +124,15 @@ class YourBrainListViewController: UITableViewController {
     
     //Section NO. 18 ..Lecture NO. 243
     //2
-    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest()) {
+    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
+        
+        let categorypreficate = NSPredicate(format: "parentCatagory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categorypreficate,additionalPredicate])
+        } else {
+            request.predicate = categorypreficate
+        }
         
         do {
             itemArray = try context.fetch(request)
@@ -137,11 +152,11 @@ extension YourBrainListViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         let request : NSFetchRequest<Item> = Item.fetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItem(with: request)
+        loadItem(with: request, predicate: predicate)
         
     }
     
