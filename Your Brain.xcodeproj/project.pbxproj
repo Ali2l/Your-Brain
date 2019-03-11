@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3126F97B66EC1DD8C70BE5C4 /* Pods_Your_Brain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5210439EAD6EC00EFBF23E89 /* Pods_Your_Brain.framework */; };
 		4191A576222C1A2F00A90E5B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4191A574222C1A2F00A90E5B /* DataModel.xcdatamodeld */; };
 		4191A5992233248F00A90E5B /* CatagoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A5982233248F00A90E5B /* CatagoryViewController.swift */; };
 		41A03D662229D17200AE58E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A03D652229D17200AE58E9 /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		074CD707852DC0750E3DC150 /* Pods-Your Brain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Your Brain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Your Brain/Pods-Your Brain.release.xcconfig"; sourceTree = "<group>"; };
 		4191A575222C1A2F00A90E5B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4191A5982233248F00A90E5B /* CatagoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryViewController.swift; sourceTree = "<group>"; };
 		41A03D622229D17200AE58E9 /* Your Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +28,8 @@
 		41A03D6C2229D17300AE58E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41A03D6F2229D17300AE58E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41A03D712229D17300AE58E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5210439EAD6EC00EFBF23E89 /* Pods_Your_Brain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Your_Brain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E12DC162C1B14F18814CB556 /* Pods-Your Brain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Your Brain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Your Brain/Pods-Your Brain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,12 +37,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3126F97B66EC1DD8C70BE5C4 /* Pods_Your_Brain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330F22DD891E7B32058C747F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5210439EAD6EC00EFBF23E89 /* Pods_Your_Brain.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4191A570222B489500A90E5B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +91,8 @@
 			children = (
 				41A03D642229D17200AE58E9 /* Your Brain */,
 				41A03D632229D17200AE58E9 /* Products */,
+				AAE639C3395EAFA0B83C9B2D /* Pods */,
+				330F22DD891E7B32058C747F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +117,15 @@
 			path = "Your Brain";
 			sourceTree = "<group>";
 		};
+		AAE639C3395EAFA0B83C9B2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E12DC162C1B14F18814CB556 /* Pods-Your Brain.debug.xcconfig */,
+				074CD707852DC0750E3DC150 /* Pods-Your Brain.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41A03D742229D17300AE58E9 /* Build configuration list for PBXNativeTarget "Your Brain" */;
 			buildPhases = (
+				F706F9E94FA3C8754ABB4DB8 /* [CP] Check Pods Manifest.lock */,
 				41A03D5E2229D17200AE58E9 /* Sources */,
 				41A03D5F2229D17200AE58E9 /* Frameworks */,
 				41A03D602229D17200AE58E9 /* Resources */,
+				4EBB88AD56528315E948C27D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +193,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4EBB88AD56528315E948C27D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Your Brain/Pods-Your Brain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Your Brain/Pods-Your Brain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F706F9E94FA3C8754ABB4DB8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Your Brain-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41A03D5E2229D17200AE58E9 /* Sources */ = {
@@ -320,6 +395,7 @@
 		};
 		41A03D752229D17300AE58E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E12DC162C1B14F18814CB556 /* Pods-Your Brain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -338,6 +414,7 @@
 		};
 		41A03D762229D17300AE58E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 074CD707852DC0750E3DC150 /* Pods-Your Brain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
