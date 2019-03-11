@@ -13,9 +13,9 @@ class YourBrainListViewController: UITableViewController {
     
     var itemArray = [Item]()
     
-    var selectedCategory : Catagory? {
+    var selectedCategory : Category? {
         didSet {
-            loadItem()
+            // loadItem()
         }
     }
     
@@ -85,12 +85,12 @@ class YourBrainListViewController: UITableViewController {
             
             //what will happen when user clicks the add item buttun on UIAlert
             
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            newItem.done = false
-            newItem.parentCatagory = self.selectedCategory
+//            let newItem = Item(context: self.context)
+//            newItem.title = textField.text!
+//            newItem.done = false
+//            newItem.parentCategory = self.selectedCategory
+//            self.itemArray.append(newItem)
             
-            self.itemArray.append(newItem)
             
             self.saveItems()
         }
@@ -124,58 +124,58 @@ class YourBrainListViewController: UITableViewController {
     
     //Section NO. 18 ..Lecture NO. 243
     //2
-    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
-        
-        let categorypreficate = NSPredicate(format: "parentCatagory.name MATCHES %@", selectedCategory!.name!)
-        
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categorypreficate,additionalPredicate])
-        } else {
-            request.predicate = categorypreficate
-        }
-        
-        do {
-            itemArray = try context.fetch(request)
-        } catch {
-            print(error)
-        }
-        
-        tableView.reloadData()
-    }
+//    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
+//
+//        let categorypreficate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+//
+//        if let additionalPredicate = predicate {
+//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categorypreficate,additionalPredicate])
+//        } else {
+//            request.predicate = categorypreficate
+//        }
+//
+//        do {
+//            itemArray = try context.fetch(request)
+//        } catch {
+//            print(error)
+//        }
+//
+//        tableView.reloadData()
+//    }
     
     
 }
 
 //MARK: - Search Bar Methods
-extension YourBrainListViewController : UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
-        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
-        loadItem(with: request, predicate: predicate)
-        
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchBar.text?.count == 0 {
-            loadItem()
-            
-            //dismiss keyboard
-            DispatchQueue.main.async {
-                
-               searchBar.resignFirstResponder()
-            }
-            
-        }
-    }
-    
-    
-    
-}
+//extension YourBrainListViewController : UISearchBarDelegate {
+//
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+//        let request : NSFetchRequest<Item> = Item.fetchRequest()
+//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//
+//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+//
+//        loadItem(with: request, predicate: predicate)
+//
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//
+//        if searchBar.text?.count == 0 {
+//            loadItem()
+//
+//            //dismiss keyboard
+//            DispatchQueue.main.async {
+//
+//               searchBar.resignFirstResponder()
+//            }
+//
+//        }
+//    }
+//
+//
+//
+//}
 
 
