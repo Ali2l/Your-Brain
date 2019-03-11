@@ -14,8 +14,7 @@ class CatagoryViewController: UITableViewController {
     
     let realm = try! Realm()
     
-    var categoryArray = [Category]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var categories : Results<Category>?
     
     
     override func viewDidLoad() {
@@ -29,16 +28,14 @@ class CatagoryViewController: UITableViewController {
     
     //MARK:- TableView Datasource Method
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return categories?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "catagoryItemCell", for: indexPath)
         
-        let category = categoryArray[indexPath.row]
-        
-        cell.textLabel?.text = category.name
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
         
         return cell
     }
@@ -53,7 +50,7 @@ class CatagoryViewController: UITableViewController {
         let destinationVC = segue.destination as! YourBrainListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedCategory = categoryArray[indexPath.row]
+            destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }
     
@@ -72,8 +69,6 @@ class CatagoryViewController: UITableViewController {
             
             let newCategory = Category()
             newCategory.name = textField.text!
-            
-            self.categoryArray.append(newCategory)
             
             self.save(category: newCategory)
         }
@@ -106,13 +101,9 @@ class CatagoryViewController: UITableViewController {
     
     func loadCategory() {
         
-//        do {
-//            categoryArray = try context.fetch(request)
-//        } catch {
-//            print(error)
-//        }
-//
-//        tableView.reloadData()
+        categories = realm.objects(Category.self)
+        
+        tableView.reloadData()
     }
 }
 

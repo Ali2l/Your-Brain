@@ -7,34 +7,35 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class YourBrainListViewController: UITableViewController {
     
-    var itemArray = [Item]()
+    var yourbrainItems : Results<Item>?
+    
+    let realm = try! Realm()
     
     var selectedCategory : Category? {
         didSet {
-            // loadItem()
+            loadItem()
         }
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-//        loadItem()
-
+        //        loadItem()
+        
     }
     
     
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return yourbrainItems?.count ?? 1
     }
     
     
@@ -43,17 +44,20 @@ class YourBrainListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "YourBrainItemCell", for: indexPath)
         
-        let item = itemArray[indexPath.row]
-        
-        cell.textLabel?.text = item.title
-        
-        
-        
-        if item.done == true {
-            cell.accessoryType = .checkmark
+        if let item = yourbrainItems?[indexPath.row] {
+            
+            cell.textLabel?.text = item.title
+            
+            if item.done == true {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
         } else {
-            cell.accessoryType = .none
+            cell.textLabel?.text = "No Items Added"
         }
+        
+        
         return cell
     }
     
@@ -61,16 +65,21 @@ class YourBrainListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // print(itemArray[indexPath.row])
         
-        //Deleting
-        //context.delete(itemArray[indexPath.row])
-        //itemArray.remove(at: indexPath.row)
+        if let item = yourbrainItems?[indexPath.row] {
+            
+            do {
+                try realm.write {
+                    item.done = !item.done
+                    //                    realm.delete(item)
+                }
+            } catch {
+                print(error)
+            }
+            
+        }
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
-        
-        
-        saveItems()
+        tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -84,15 +93,24 @@ class YourBrainListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
             //what will happen when user clicks the add item buttun on UIAlert
+            //Saving items using Realm and assoisiate it with the parentCategory
             
-//            let newItem = Item(context: self.context)
-//            newItem.title = textField.text!
-//            newItem.done = false
-//            newItem.parentCategory = self.selectedCategory
-//            self.itemArray.append(newItem)
+            if let currentCategory = self.selectedCategory {
+                
+                do {
+                    try self.realm.write {
+                        let newItem = Item()
+                        newItem.title = textField.text!
+                        currentCategory.items.append(newItem)
+                    }
+                } catch {
+                    print(error)
+                }
+                
+            }
             
+            self.tableView.reloadData()
             
-            self.saveItems()
         }
         
         alert.addTextField { (alertTextField) in
@@ -106,42 +124,12 @@ class YourBrainListViewController: UITableViewController {
     
     
     
-    //Encoding and Decoding Data with these two Func
-    //1
-    func saveItems() {
+    func loadItem() {
         
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        yourbrainItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         
-        
-        self.tableView.reloadData()
-        
+        tableView.reloadData()
     }
-    
-    
-    //Section NO. 18 ..Lecture NO. 243
-    //2
-//    func loadItem(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
-//
-//        let categorypreficate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//
-//        if let additionalPredicate = predicate {
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categorypreficate,additionalPredicate])
-//        } else {
-//            request.predicate = categorypreficate
-//        }
-//
-//        do {
-//            itemArray = try context.fetch(request)
-//        } catch {
-//            print(error)
-//        }
-//
-//        tableView.reloadData()
-//    }
     
     
 }
